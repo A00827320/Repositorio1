@@ -10,15 +10,20 @@ getwd()
 # INSTALACIÓN DE PAQUETES
 
 # BIOCOUNDUTOR
-#if (!requireNamespace("BiocManager", quietly = TRUE)) 
+if (!requireNamespace("BiocManager", quietly = TRUE)) 
   install.packages("BiocManager")
 BiocManager::install(c("DESeq2", "clusterProfiler", "DOSE", "enrichplot"), ask = FALSE)
+```
 
 
+```{r}
 # CRAN
 install.packages(c("tidyverse", "readr", "dplyr"))
 install.packages("tidyverse")
 
+```
+
+```{r}
 # CLUSTERPROFILE
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -34,7 +39,9 @@ BiocManager::install("gplots")
 BiocManager::install("VennDiagram")
 BiocManager::install("dendsort")
 
+```
 
+```{r}
 
 # APLICANDO PAQUETERÍAS
 library(DESeq2);	#Normalization and everything related to that
@@ -55,7 +62,8 @@ library(kohonen);	# This is the library for the SOM (Self-Organizing Maps)
 library(gplots);	# Easy heatmaps también pheat más facile
 library(VennDiagram);	
 library(dendsort);	# Sorting (clasificación) dendrograms → Rotate dendograms
-
+```
+```{r}
 
 # CARGA DE TABLAS ----
 
@@ -64,11 +72,15 @@ diff_genes <- read.csv("https://raw.githubusercontent.com/lucinoboa/Rust_Transcr
 colnames(diff_genes)[1] <- "ID"       # Rename first column
 diff_genes <- diff_genes[, c("ID", "log2FoldChange")]
 
+```
 
+```{r}
 ## ANÁLISIS DE ENRIQUESIMIENTO
 
 head(annotation, 100)
+```
 
+```{r}
 # Assume at least these columns exist: "ID", "GO", "description"
 head(annotation)
 
@@ -93,7 +105,9 @@ ora_GOs <- enricher(
   TERM2NAME = term2name
 )
 
+```
 
+```{r}
 ## GRAFICAR
 
 sum(ora_GOs@result$p.adjust < 0.05)
@@ -132,7 +146,9 @@ cog_dict <- c(
 annotation <- annotation %>%
   mutate(COG_name = cog_dict[COG_category])
 
+```
 
+```{r}
 
 ## Exportando datos
 
@@ -170,7 +186,9 @@ down_summary <- deg_down_annot %>%
   filter(!is.na(COG_name)) %>%
   group_by(COG_name) %>%
   summarise(Down = n_distinct(ID))
+```
 
+```{r}
 # Merge the summaries.
 summary_table <- universe_summary %>%
   full_join(up_summary, by="COG_name") %>%
@@ -183,4 +201,7 @@ summary_table <- universe_summary %>%
 print(summary_table, n=21)
 
 ```
+
+```
+
 
