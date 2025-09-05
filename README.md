@@ -149,6 +149,15 @@ annotation <- annotation %>%
 
 ```
 
+<img width="1094" height="670" alt="image" src="https://github.com/user-attachments/assets/05f88825-b0d4-493d-be9e-a50e9840b22b" />
+
+<img width="1085" height="671" alt="image" src="https://github.com/user-attachments/assets/bb45d841-3694-439a-b8db-1db7e283c825" />
+
+
+
+
+
+
 ```{r}
 
 ## Exportando datos
